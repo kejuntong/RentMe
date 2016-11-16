@@ -5,7 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.rentme.rentme.Models.RentalItem;
 import com.rentme.rentme.R;
 
@@ -22,33 +28,41 @@ public class HomeListAdapter extends
 
     ArrayList<RentalItem> itemList;
 
+    StorageReference storageRef;
+
     public HomeListAdapter(Context context, ArrayList<RentalItem> itemList){
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.itemList = itemList;
+
+        storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://rentme-93fc4.appspot.com/rental");
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View arg0) {
             super(arg0);
         }
-//
-//        TextView itemText;
-//        CheckBox itemCheckbox;
-//        ImageButton itemAdd;
-//        TextView heightText;
-//        ToggleButton toggleButton;
 
+        TextView locationText;
+        TextView priceText;
+        TextView description;
+        TextView startTime;
+
+        ImageView roomImage;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        ViewHolder viewHolder = null;
         View view = mInflater.inflate(R.layout.item_home_rental, null);
-        viewHolder = new ViewHolder(view);
-//        viewHolder.itemText = (TextView) view.findViewById(R.id.filter_item_text);
-//        viewHolder.itemCheckbox = (CheckBox) view.findViewById(R.id.filter_check_box);
+        ViewHolder viewHolder = new ViewHolder(view);
+
+        viewHolder.locationText = (TextView) view.findViewById(R.id.location);
+        viewHolder.priceText = (TextView) view.findViewById(R.id.price);
+        viewHolder.description = (TextView) view.findViewById(R.id.description);
+        viewHolder.startTime = (TextView) view.findViewById(R.id.available_time);
+
+        viewHolder.roomImage = (ImageView) view.findViewById(R.id.round_image);
 
         return viewHolder;
     }
@@ -56,41 +70,32 @@ public class HomeListAdapter extends
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-//        holder.itemText.setText(itemList.get(position).getItemName());
-//
-//        if (itemList.get(position).getItemType() == Constants.FILTER_CHECK_BOX_SINGLE){
-//
-//            if (itemList.get(position).getIsSelected()){
-//                singleSelectedPosition = position;
-//            }
-//
-//            if (position == singleSelectedPosition){
-//                holder.itemCheckbox.setAlpha(1.0f);
-//                holder.itemCheckbox.setChecked(true);
-//            } else {
-//                holder.itemCheckbox.setAlpha(0f);
-//                holder.itemCheckbox.setChecked(false);
-//            }
-//
-//            holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    for (FilterItem item : itemList){
-//                        item.setIsSelected(false);
-//                    }
-//                    itemList.get(position).setIsSelected(true);
-//                    singleSelectedPosition = position;
-//                    notifyDataSetChanged();
-//
-//                    if (onItemClickListener != null){
-//                        onItemClickListener.onItemClick(holder.itemView, position, null);
-//                    }
-//
-//                }
-//            });
-//        }
+        RentalItem rentalItem = itemList.get(position);
 
+        // suppose region won't be null
+        if (rentalItem.getLocation() != null){
+            holder.locationText.setText(rentalItem.getLocation() + ", " + rentalItem.getRegion());
+        } else {
+            holder.locationText.setText(rentalItem.getRegion());
+        }
+
+        holder.priceText.setText(rentalItem.getPrice());
+
+        holder.startTime.setText(rentalItem.getAv_time());
+
+        if (rentalItem.getDescription() != null){
+            holder.description.setText(rentalItem.getDescription());
+        } else {
+            holder.description.setVisibility(View.GONE);
+        }
+
+        Integer photoNumber = rentalItem.getPhoto_number();
+        if (photoNumber != null && photoNumber > 0) {
+            StorageReference reference = storageRef.child(itemList.get(position).getKey()).child("1.jpg");
+            Glide.with(mContext).using(new FirebaseImageLoader()).load(reference).into(holder.roomImage);
+        } else {
+
+        }
 
     }
 

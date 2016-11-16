@@ -26,17 +26,19 @@
                 android:src="@drawable/test_room"
                 android:scaleType="centerCrop"/>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_centerInParent="true">
 
                 <TextView
-                    android:id="@+id/address"
+                    android:id="@+id/location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent_black_percent_50"
-                    android:text="North York"
+                    android:text="Don Mill and Godstone, North York"
+                    android:singleLine="true"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="18dp"/>
@@ -45,7 +47,6 @@
                     android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/address"
                     android:background="@color/transparent_black_percent_50"
                     android:text="$1000/month"
                     android:textColor="@color/white"
@@ -53,17 +54,26 @@
                     android:textSize="18dp"/>
 
                 <TextView
-                    android:id="@+id/style"
+                    android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/price"
                     android:background="@color/transparent_black_percent_50"
-                    android:text="two bed room, condo"
+                    android:text="town house, basement"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="18dp"/>
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/available_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent_black_percent_50"
+                    android:text="2016-12-01"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="18dp"/>
+
+            </LinearLayout>
 
 
 

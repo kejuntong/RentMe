@@ -10,11 +10,4 @@
         android:layout_height="match_parent"
         android:scrollbars="none"/>
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true"/>
-
-
 </RelativeLayout>

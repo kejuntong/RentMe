@@ -34,47 +34,25 @@ public class HomeActivity extends Activity {
     DatabaseReference databaseRef;
     StorageReference storageRef;
 
-    ImageView testImageView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-
-        rentalItemList = new ArrayList<>();
-        mAdapter = new HomeListAdapter(this, rentalItemList);
-
-        // for testing
-        for (int i=0; i<10; i++){
-            rentalItemList.add(new RentalItem());
-        }
-
-        mRecyclerView.setAdapter(mAdapter);
-
         databaseRef = FirebaseDatabase.getInstance().getReference("rental");
-        databaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    RentalItem rentalItem = child.getValue(RentalItem.class);
-                    System.out.println("test success: " + rentalItem.getRegion());
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        initRecyclerView();
 
-            }
-        });
+        addDataLoadingListener();
 
 
 //        RentalItem item = new RentalItem("1000", "North York");
-//        databaseRef.child("rental").child("0001").setValue(item);
+//        ArrayList<String> testPhotoList = new ArrayList<>();
+//        testPhotoList.add("www.123");
+//        testPhotoList.add("sssssat");
+//        item.setPhotoList(testPhotoList);
+//        databaseRef.child("0010").setValue(item);
 
 
 //        storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://rentme-93fc4.appspot.com/rental/REALTOR.jpg");
@@ -84,4 +62,39 @@ public class HomeActivity extends Activity {
 //        Glide.with(this).using(new FirebaseImageLoader()).load(storageRef).into(testImageView);
 
     }
+
+    private void initRecyclerView(){
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        rentalItemList = new ArrayList<>();
+        mAdapter = new HomeListAdapter(this, rentalItemList);
+
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void addDataLoadingListener(){
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                rentalItemList.clear();
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    RentalItem rentalItem = child.getValue(RentalItem.class);
+                    rentalItem.setKey(child.getKey());
+                    rentalItemList.add(rentalItem);
+                }
+
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }

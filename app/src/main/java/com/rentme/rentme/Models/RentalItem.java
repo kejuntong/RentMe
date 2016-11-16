@@ -1,12 +1,21 @@
 package com.rentme.rentme.Models;
 
+import java.util.ArrayList;
+
 /**
  * Created by kejuntong on 16-11-13.
  */
 public class RentalItem {
 
+    String key;
+
+    String av_time;
+    String description;
+    String location;
     String price;
     String region;
+
+    Integer photo_number;
 
     // for testing
     public RentalItem(){
@@ -24,12 +33,25 @@ public class RentalItem {
     public String getRegion(){
         return this.region;
     }
-
-    public void setPrice(String price){
-        this.price = price;
+    public String getAv_time(){
+        return this.av_time;
     }
-    public void setRegion(String region){
-        this.region = region;
+    public String getDescription(){
+        return this.description;
+    }
+    public String getLocation(){
+        return this.location;
+    }
+    public Integer getPhoto_number(){
+        return this.photo_number;
+    }
+
+
+    public void setKey(String key){
+        this.key = key;
+    }
+    public String getKey(){
+        return this.key;
     }
 
 }
