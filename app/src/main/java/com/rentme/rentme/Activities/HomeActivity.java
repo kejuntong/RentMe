@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,8 @@ public class HomeActivity extends Activity {
     RecyclerView mRecyclerView;
     HomeListAdapter mAdapter;
     SlidingMenu slidingMenu;
+    ImageButton menuButton;
+    PullRefreshLayout swipeRefreshLayout;
 
     ArrayList<RentalItem> rentalItemList;
 
@@ -46,9 +49,13 @@ public class HomeActivity extends Activity {
 
         databaseRef = FirebaseDatabase.getInstance().getReference("rental");
 
+        setSlidingMenu();
+
         initRecyclerView();
 
-        addDataLoadingListener();
+        setPullToRefresh();
+
+        loadDataToList();
 
 
 //        RentalItem item = new RentalItem("1000", "North York");
@@ -78,10 +85,22 @@ public class HomeActivity extends Activity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void addDataLoadingListener(){
-        databaseRef.addValueEventListener(new ValueEventListener() {
+    private void setPullToRefresh(){
+        swipeRefreshLayout = (PullRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadDataToList();
+            }
+        });
+    }
+
+    private void loadDataToList(){
+        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                swipeRefreshLayout.setRefreshing(false);
 
                 rentalItemList.clear();
 
