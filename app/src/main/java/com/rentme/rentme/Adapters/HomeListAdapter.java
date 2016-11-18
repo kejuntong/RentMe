@@ -1,6 +1,7 @@
 package com.rentme.rentme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.rentme.rentme.Activities.PropertyDetailActivity;
 import com.rentme.rentme.Models.RentalItem;
 import com.rentme.rentme.R;
 
@@ -96,6 +98,13 @@ public class HomeListAdapter extends
         } else {
 
         }
+
+        holder.roomImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mContext.startActivity(new Intent(mContext, PropertyDetailActivity.class));
+            }
+        });
 
     }
 
