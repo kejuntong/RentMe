@@ -4,16 +4,16 @@
     android:layout_height="match_parent"
     android:background="@color/darkgreen">
 
-    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-        <!--android:id="@+id/profile_image"-->
-        <!--android:layout_width="70dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:src="@drawable/placeholder_user_profile"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="30dp"/>-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_menu_profile_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
     
     <RelativeLayout
-        android:id="@+id/row_home"
+        android:id="@+id/row_rent"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/selectable_menu_row_background"
@@ -21,13 +21,22 @@
         android:layout_marginTop="20dp"
         android:clickable="true">
 
+        <ImageView
+            android:id="@+id/rent_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_for_rent_icon" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="For Rent"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/rent_icon"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>
@@ -35,27 +44,36 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/row_home"
+        android:layout_below="@+id/row_rent"
         android:background="@color/transparent_white_percent_20"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 
     <RelativeLayout
-        android:id="@+id/row_carpool"
+        android:id="@+id/row_sale"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/selectable_menu_row_background"
-        android:layout_below="@+id/row_home"
+        android:layout_below="@+id/row_rent"
         android:layout_marginTop="1dp"
         android:clickable="true">
+
+        <ImageView
+            android:id="@+id/sale_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_for_sale_icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:text="For Sale"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/sale_icon"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>
@@ -63,35 +81,36 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/row_carpool"
+        android:layout_below="@+id/row_sale"
         android:background="@color/transparent_white_percent_20"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/row_home"
-        android:background="@color/transparent_white_percent_20"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
-
-    <RelativeLayout
-        android:id="@+id/row_zufang"
+        android:id="@+id/row_wishlist"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/selectable_menu_row_background"
-        android:layout_below="@+id/row_carpool"
+        android:layout_below="@+id/row_sale"
         android:layout_marginTop="1dp"
         android:clickable="true">
+
+        <ImageView
+            android:id="@+id/wishlist_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_favorite_icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:text="My Wishlist"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/wishlist_icon"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>
@@ -99,63 +118,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/row_zufang"
-        android:background="@color/transparent_white_percent_20"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
-
-    <RelativeLayout
-        android:id="@+id/row_ershouhuo"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/selectable_menu_row_background"
-        android:layout_below="@+id/row_zufang"
-        android:layout_marginTop="1dp"
-        android:clickable="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/row_ershouhuo"
-        android:background="@color/transparent_white_percent_20"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
-
-    <RelativeLayout
-        android:id="@+id/row_jiaoyou"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/selectable_menu_row_background"
-        android:layout_below="@+id/row_ershouhuo"
-        android:layout_marginTop="1dp"
-        android:clickable="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/row_jiaoyou"
+        android:layout_below="@+id/row_wishlist"
         android:background="@color/transparent_white_percent_20"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
@@ -165,17 +128,26 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/selectable_menu_row_background"
-        android:layout_below="@+id/row_jiaoyou"
+        android:layout_below="@+id/row_wishlist"
         android:layout_marginTop="1dp"
         android:clickable="true">
+
+        <ImageView
+            android:id="@+id/filter_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_filter_icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6"
+            android:text="Filter"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/filter_icon"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>

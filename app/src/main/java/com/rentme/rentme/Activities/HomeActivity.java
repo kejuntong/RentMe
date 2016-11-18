@@ -2,15 +2,11 @@ package com.rentme.rentme.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-
-import com.baoyz.widget.PullRefreshLayout;
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +30,7 @@ public class HomeActivity extends Activity {
     HomeListAdapter mAdapter;
     SlidingMenu slidingMenu;
     ImageButton menuButton;
-    PullRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ArrayList<RentalItem> rentalItemList;
 
@@ -86,8 +82,8 @@ public class HomeActivity extends Activity {
     }
 
     private void setPullToRefresh(){
-        swipeRefreshLayout = (PullRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-        swipeRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadDataToList();
