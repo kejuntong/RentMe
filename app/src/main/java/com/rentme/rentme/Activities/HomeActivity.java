@@ -1,11 +1,13 @@
 package com.rentme.rentme.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +33,7 @@ public class HomeActivity extends Activity {
     SlidingMenu slidingMenu;
     ImageButton menuButton;
     SwipeRefreshLayout swipeRefreshLayout;
+    Button postButton;
 
     ArrayList<RentalItem> rentalItemList;
 
@@ -44,6 +47,14 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home_screen);
 
         databaseRef = FirebaseDatabase.getInstance().getReference("rental");
+
+        postButton = (Button) findViewById(R.id.post_button);
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, PostActivity.class));
+            }
+        });
 
         setSlidingMenu();
 

@@ -21,6 +21,7 @@
         <activity android:name="com.rentme.rentme.Activities.HomeActivity" android:screenOrientation="portrait"/>
 
         <activity android:name="com.rentme.rentme.Activities.PropertyDetailActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.rentme.rentme.Activities.PostActivity" android:screenOrientation="portrait"/>
 
     </application>
 

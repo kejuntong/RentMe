@@ -27,10 +27,10 @@ public class PropertyDetailActivity extends FragmentActivity {
         setContentView(R.layout.activity_property_detail);
 
         photoList = new ArrayList<>();
-        photoList.add("gs://rentme-93fc4.appspot.com/rental/1.jpg");
-        photoList.add("gs://rentme-93fc4.appspot.com/rental/2.jpg");
-        photoList.add("gs://rentme-93fc4.appspot.com/rental/3.jpg");
-        photoList.add("gs://rentme-93fc4.appspot.com/rental/4.jpg");
+        photoList.add("gs://rentme-93fc4.appspot.com/rental/0001/1.jpg");
+        photoList.add("gs://rentme-93fc4.appspot.com/rental/0001/2.jpg");
+        photoList.add("gs://rentme-93fc4.appspot.com/rental/0001/3.jpg");
+        photoList.add("gs://rentme-93fc4.appspot.com/rental/0001/4.jpg");
 
         initViewPager();
     }

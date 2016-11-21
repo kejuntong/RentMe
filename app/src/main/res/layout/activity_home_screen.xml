@@ -46,4 +46,17 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <Button
+        android:id="@+id/post_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/round_button_post"
+        android:alpha="0.9"
+        android:text="Post"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
